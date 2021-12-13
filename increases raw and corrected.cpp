@@ -16,33 +16,33 @@ int main()
 
 	if (datafile.is_open())
 	{
-		cout << "\nFile is sucsessfully open!\n" << endl;
+		cout << "\nFile is sucsessfully opened!\n" << endl;
 	}
 	else
 	{
 		cout << "\nERROR! FILE 'INPUT.TXT' IS MISSING OR CORRUPTED.\n" << endl;
 		system("pause");
-		return 0;
+		return 1;
 	}
 
 	vector <int> datavector; //initializing vector
 
 	int data = 0;
 
-	while (datafile >> data)
+	while (datafile >> data) //reading data from file to vector
 	{
 		datavector.push_back(data);
 	}
+
 	datafile.close(); //closing external file
 
 	int size = 0;
-
 	size = datavector.size();
 
 	int rawinc = 0;
 	int corrinc = 0;
 
-	for (int i = 0; i < size - 1; i++) //comparison
+	for (int i = 0; i < size - 1; i++) //comparison raw
 	{
 		int a = datavector[i];
 		int b = datavector[i + 1];
@@ -50,7 +50,7 @@ int main()
 		if (a < b) rawinc++;
 	}
 
-	for (int i = 0; i < size - 3; i++) //comparison
+	for (int i = 0; i < size - 3; i++) //comparison corrected
 	{
 		int a = datavector[i] + datavector[i + 1] + datavector[i + 2];
 		int b = datavector[i + 1] + datavector[i + 2] + datavector[i + 3];
@@ -61,6 +61,6 @@ int main()
 	cout << "The total number of increases is:\n" << endl;
 	cout << "raw - " << rawinc << "; " << "corrected - " << corrinc << "\n" << endl;
 
-	system("pause");
+	system("pause > 0");
 	return 0;
 }
